@@ -21,7 +21,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var centralManager:CBCentralManager!
     var connectingPeripheral:CBPeripheral!
 
-    let serviceUUID = CBUUID(string: "0x180D");
+    let serviceUUID = CBUUID(string: "0x180D"); //Heart Rate Service
 
     // =============================================================
     // UIViewController
