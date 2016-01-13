@@ -15,10 +15,8 @@
 		122ACEBA1C44C8D4003601A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 122ACEB81C44C8D4003601A5 /* LaunchScreen.storyboard */; };
 		122ACEC51C44C8D4003601A5 /* HeartRateMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122ACEC41C44C8D4003601A5 /* HeartRateMonitorTests.swift */; };
 		122ACED01C44C8D4003601A5 /* HeartRateMonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122ACECF1C44C8D4003601A5 /* HeartRateMonitorUITests.swift */; };
-		1241BDE11C44CCD700BBA9BE /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1241BDDD1C44CCD700BBA9BE /* AppIcon.icns */; };
-		1241BDE21C44CCD700BBA9BE /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1241BDDE1C44CCD700BBA9BE /* Heart.png */; };
 		1241BDE31C44CCD700BBA9BE /* HeartGraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 1241BDDF1C44CCD700BBA9BE /* HeartGraphic.png */; };
-		1241BDE41C44CCD700BBA9BE /* Human.png in Resources */ = {isa = PBXBuildFile; fileRef = 1241BDE01C44CCD700BBA9BE /* Human.png */; };
+		125E786C1C4615F7005D28B1 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 125E786B1C4615F7005D28B1 /* icons */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +51,8 @@
 		122ACECB1C44C8D4003601A5 /* HeartRateMonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartRateMonitorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		122ACECF1C44C8D4003601A5 /* HeartRateMonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateMonitorUITests.swift; sourceTree = "<group>"; };
 		122ACED11C44C8D4003601A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1241BDDD1C44CCD700BBA9BE /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
-		1241BDDE1C44CCD700BBA9BE /* Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart.png; sourceTree = "<group>"; };
 		1241BDDF1C44CCD700BBA9BE /* HeartGraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartGraphic.png; sourceTree = "<group>"; };
-		1241BDE01C44CCD700BBA9BE /* Human.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Human.png; sourceTree = "<group>"; };
+		125E786B1C4615F7005D28B1 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +103,8 @@
 		122ACEAB1C44C8D4003601A5 /* HeartRateMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				1241BDDD1C44CCD700BBA9BE /* AppIcon.icns */,
-				1241BDDE1C44CCD700BBA9BE /* Heart.png */,
+				125E786B1C4615F7005D28B1 /* icons */,
 				1241BDDF1C44CCD700BBA9BE /* HeartGraphic.png */,
-				1241BDE01C44CCD700BBA9BE /* Human.png */,
 				122ACEAC1C44C8D4003601A5 /* AppDelegate.swift */,
 				122ACEAE1C44C8D4003601A5 /* ViewController.swift */,
 				122ACEB01C44C8D4003601A5 /* Main.storyboard */,
@@ -247,13 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1241BDE21C44CCD700BBA9BE /* Heart.png in Resources */,
 				122ACEBA1C44C8D4003601A5 /* LaunchScreen.storyboard in Resources */,
-				1241BDE11C44CCD700BBA9BE /* AppIcon.icns in Resources */,
 				1241BDE31C44CCD700BBA9BE /* HeartGraphic.png in Resources */,
 				122ACEB71C44C8D4003601A5 /* Assets.xcassets in Resources */,
+				125E786C1C4615F7005D28B1 /* icons in Resources */,
 				122ACEB21C44C8D4003601A5 /* Main.storyboard in Resources */,
-				1241BDE41C44CCD700BBA9BE /* Human.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

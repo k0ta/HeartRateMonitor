@@ -13,15 +13,15 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
 
     @IBOutlet weak var deviceNameLbl: UILabel!
     @IBOutlet weak var bpmValueLbl: UILabel!
+    @IBOutlet weak var uuidLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var updateTimeLbl: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var centralManager:CBCentralManager!
     var connectingPeripheral:CBPeripheral!
 
-//    let kServiceUUIDHeartRate = "0x180D";
-    let kCharacteristicUUIDHeartRateMeasurement = "0x2A37";
     let serviceUUID = CBUUID(string: "0x180D");
-//    let kServiceUUIDHeartRate = "180D";
-//    let kCharacteristicUUIDHeartRateMeasurement = "2A37";
 
     // =============================================================
     // UIViewController
@@ -29,7 +29,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        centralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
+        self.activityIndicator.startAnimating()
+        self.centralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +88,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         print("connect device: \(peripheral.name)")
         connectingPeripheral = peripheral;
         deviceNameLbl.text = peripheral.name!
+        uuidLbl.text = "UUID: \(peripheral.identifier.UUIDString)"
         //接続したデバイスのHeartRateサービスを探す
         peripheral.discoverServices([self.serviceUUID])
     }
@@ -151,19 +153,23 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             print("Failed to read value " + error!.localizedDescription)
             return
         }
-        print("read value raw: \(characteristic.value)")
         switch characteristic.UUID.UUIDString{
         case "2A37": //HeartRateMeasurement
-            update(characteristic.value!)
+            let bpm:UInt16 = getBpm(characteristic.value!)
+            update(bpm)
+            if (self.activityIndicator.isAnimating()){
+                self.activityIndicator.stopAnimating()
+            }
         default:
             print(characteristic.UUID.UUIDString)
+            print("Failed to read value. UUID: \(characteristic.UUID.UUIDString) value: \(characteristic.value)")
         }
     }
     
     // =============================================================
     // Logic
     // =============================================================
-    func update(heartRateData:NSData){
+    func getBpm(heartRateData:NSData) -> UInt16{
         
         var buffer = [UInt8](count: heartRateData.length, repeatedValue: 0x00)
         heartRateData.getBytes(&buffer, length: buffer.count)
@@ -179,16 +185,28 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         }
         
         if let actualBpm = bpm{
-            print("bpm: \(actualBpm )")
-            bpmValueLbl.text = String(actualBpm);
+            return actualBpm
         }else {
-            print("bpm: \(bpm )")
-            bpmValueLbl.text = String(bpm);
+            return bpm!
         }
     }
     
+    func update(bpm:UInt16){
+        let updateTime:String = now;
+        print("bpm: \(bpm), time:\(updateTime)")
+        bpmValueLbl.text = String(bpm)
+        updateTimeLbl.text = "Update: \(updateTime)"
+    }
+    
+    var now: String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        return dateFormatter.stringFromDate(NSDate())
+    }
+
     func showAlert(title:String, msg: String){
-        print("title: " + title + "msg: " + msg)
+        print("title: \(title) msg: \(msg)")
+
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -196,5 +214,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         presentViewController(alertController, animated: true, completion: nil)
     }
+    
 }
 
